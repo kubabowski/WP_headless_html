@@ -1,5 +1,7 @@
 import "../../components/navBar/navBar.js";
 import { createHeroSection, heroSwiper } from "./hero/hero.js";
+import { createTrustSection } from "./trust_quality_innovation/trust.js";
+import { createServicesSection } from "./services/services.js";
 
 async function fetchData() {
   try {
@@ -21,13 +23,19 @@ async function fetchData() {
   }
 }
 
-function showLoadingIndicator(section) {
-  const hero = document.getElementById(section);
-  hero.innerHTML = `
-    <div class="loading">
-      <p>Loading...</p>
-    </div>
-  `;
+function showLoadingIndicator(sections) {
+  sections.forEach((section) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.innerHTML = `
+        <div class="loading">
+          <p>Loading...</p>
+        </div>
+      `;
+    } else {
+      console.warn(`Element with id '${section}' not found.`);
+    }
+  });
 }
 
 function hideLoadingIndicator() {
@@ -36,26 +44,57 @@ function hideLoadingIndicator() {
     loadingElement.remove();
   }
 }
-
 (async () => {
-  const hero = document.getElementById("hero");
+  const sectionIds = ["hero", "trust_quality_innovation", "services"];
 
-  showLoadingIndicator("hero");
+  const sections = sectionIds.map((id) => document.getElementById(id));
 
   const WPData = await fetchData();
+  showLoadingIndicator(sectionIds);
 
   try {
-    if (WPData && Array.isArray(WPData.hero)) {
-      const heroContent = createHeroSection(WPData.hero);
-      hero.innerHTML = heroContent;
-      heroSwiper();
-    } else {
-      console.error("No hero data found.");
-      hero.innerHTML = "<p>No hero data available.</p>";
+    for (const section of sections) {
+      switch (section.id) {
+        case "hero":
+          if (WPData && Array.isArray(WPData.hero)) {
+            const heroContent = createHeroSection(WPData.hero);
+            section.innerHTML = heroContent;
+            heroSwiper();
+          } else {
+            console.error("Hero data not found or in wrong format.");
+          }
+          break;
+
+        case "trust_quality_innovation":
+          if (WPData && Array.isArray(WPData.trust_quality_innovation)) {
+            const trustContent = createTrustSection(
+              WPData.trust_quality_innovation
+            );
+            section.innerHTML = trustContent;
+          } else {
+            console.error("Trust data not found or in wrong format.");
+          }
+          break;
+
+        case "services":
+          if (WPData && Array.isArray(WPData.services)) {
+            const servicesContent = createServicesSection(WPData.services);
+            section.innerHTML = servicesContent;
+          } else {
+            console.error("Services data not found or in wrong format.");
+          }
+          break;
+
+        default:
+          console.error("Unknown section.");
+      }
     }
   } catch (error) {
     console.error("Error fetching WordPress data:", error);
-    hero.innerHTML = "<p>Error loading hero section.</p>";
+
+    sections.forEach((section) => {
+      section.innerHTML = `<p>Error loading ${section.id} section.</p>`;
+    });
   } finally {
     hideLoadingIndicator();
   }

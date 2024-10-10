@@ -1,0 +1,126 @@
+:root {
+  --navbar-height: 120px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.container {
+  padding-left: 6.6vw;
+  padding-right: 6.6vw;
+}
+
+.btn {
+  padding: 8px 16px;
+  display: block;
+  font-size: 14px;
+  line-height: 24px;
+  text-decoration: none;
+}
+
+.btn-blue {
+  background-color: #334eb9;
+  color: white;
+}
+
+.page {
+  margin-top: var(--navbar-height);
+}
+
+header {
+  position: fixed;
+  background-color: aquamarine;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+header .container {
+  height: var(--navbar-height);
+  margin: auto;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+header nav {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+header nav ul {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+header nav li {
+  list-style-type: none;
+}
+header nav li a {
+  line-height: 24px;
+  font-size: 16px;
+}
+header nav li:first-of-type,
+header nav li:last-of-type {
+  display: none;
+}
+
+#hero-swiper {
+  height: 100%;
+  width: 100%;
+}
+
+.hero {
+  height: calc(100vh - var(--navbar-height));
+  height: calc(100dvh - var(--navbar-height));
+  position: relative;
+}
+.hero .text {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  color: white;
+}
+.hero .header {
+  margin-top: 0;
+  color: white;
+}
+.hero .swiper-slide .inner {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+.hero .hero-pagination {
+  width: 100%;
+}
+.hero .hero-pagination .swiper-pagination-bullet {
+  width: unset;
+  height: unset;
+}
+.hero img {
+  max-width: 90vw;
+}
+
+/*# sourceMappingURL=main.css.map */
