@@ -2,6 +2,10 @@
   --navbar-height: 120px;
 }
 
+section {
+  margin-bottom: 300px;
+}
+
 html,
 body {
   margin: 0;
@@ -164,4 +168,12 @@ header nav li:last-of-type {
 .accordion-content.active {
   display: block;
   opacity: 1;
+}
+
+.casestudy .container {
+  display: flex;
+}
+.casestudy .container .col-1,
+.casestudy .container .col-2 {
+  width: 50%;
 }/*# sourceMappingURL=main.css.map */

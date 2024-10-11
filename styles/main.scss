@@ -3,6 +3,9 @@ $blue: #334eb9;
   --navbar-height: 120px;
 }
 
+section {
+  margin-bottom: 300px;
+}
 // ================================================================================================================GENERAL
 
 html,
@@ -185,4 +188,16 @@ header {
 .accordion-content.active {
   display: block;
   opacity: 1;
+}
+
+// ====================================================================================================Case study and Insights
+.casestudy {
+  .container {
+    display: flex;
+
+    .col-1,
+    .col-2 {
+      width: 50%;
+    }
+  }
 }

@@ -9,6 +9,7 @@ import {
   casestudySwiper,
   createCaseStudySection,
 } from "./case_study_and_insights/case_study_and_insights.js";
+import { createProductsSection } from "./products/products.js";
 
 async function fetchPagesData() {
   try {
@@ -59,6 +60,7 @@ function hideLoadingIndicator() {
     "talk_to_our_specialist",
     "were_looking_for_talent",
     "case_study_and_insights",
+    "products",
   ];
 
   const sections = sectionIds.map((id) => document.getElementById(id));
@@ -106,7 +108,6 @@ function hideLoadingIndicator() {
             const talkContent = createTalkSection(
               WPData.talk_to_our_specialist[0]
             );
-            console.log("Talk Section Content:", talkContent);
             section.innerHTML = talkContent;
           } else {
             console.error("Talk data not found or in wrong format.");
@@ -123,12 +124,21 @@ function hideLoadingIndicator() {
           }
           break;
 
+        case "products":
+          try {
+            const productsContent = await createProductsSection();
+            section.innerHTML = productsContent;
+          } catch (error) {
+            console.error("Error loading products section:", error);
+            section.innerHTML = `<p>Error loading products section.</p>`;
+          }
+          break;
+
         case "were_looking_for_talent":
           if (WPData && Array.isArray(WPData.were_looking_for_talent)) {
             const talentContent = createTalentSection(
               WPData.were_looking_for_talent[0]
             );
-            console.log("Talent Section Content:", talentContent);
             section.innerHTML = talentContent;
           } else {
             console.error("Talk data not found or in wrong format.");
