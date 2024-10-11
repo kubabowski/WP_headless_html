@@ -1,9 +1,16 @@
 import "../../components/navBar/navBar.js";
 import { createHeroSection, heroSwiper } from "./hero/hero.js";
 import { createTrustSection } from "./trust_quality_innovation/trust.js";
-import { createServicesSection } from "./services/services.js";
+import { createServicesSection, servicesSwiper } from "./services/services.js";
+import { handleAccordionClick } from "../../components/accordion.js";
+import { createTalkSection } from "./talk_to_our_specialist/talk_to_our_specialist.js";
+import { createTalentSection } from "./were_looking_for_talent/were_looking_for_talent.js";
+import {
+  casestudySwiper,
+  createCaseStudySection,
+} from "./case_study_and_insights/case_study_and_insights.js";
 
-async function fetchData() {
+async function fetchPagesData() {
   try {
     const response = await fetch(
       "http://localhost/jcc_solutions/wordpress/wp-json/wp/v2/pages?search=home&acf_format=standard"
@@ -45,11 +52,18 @@ function hideLoadingIndicator() {
   }
 }
 (async () => {
-  const sectionIds = ["hero", "trust_quality_innovation", "services"];
+  const sectionIds = [
+    "hero",
+    "trust_quality_innovation",
+    "services",
+    "talk_to_our_specialist",
+    "were_looking_for_talent",
+    "case_study_and_insights",
+  ];
 
   const sections = sectionIds.map((id) => document.getElementById(id));
 
-  const WPData = await fetchData();
+  const WPData = await fetchPagesData();
   showLoadingIndicator(sectionIds);
 
   try {
@@ -68,7 +82,7 @@ function hideLoadingIndicator() {
         case "trust_quality_innovation":
           if (WPData && Array.isArray(WPData.trust_quality_innovation)) {
             const trustContent = createTrustSection(
-              WPData.trust_quality_innovation
+              WPData.trust_quality_innovation[0]
             );
             section.innerHTML = trustContent;
           } else {
@@ -78,10 +92,46 @@ function hideLoadingIndicator() {
 
         case "services":
           if (WPData && Array.isArray(WPData.services)) {
-            const servicesContent = createServicesSection(WPData.services);
+            const servicesContent = await createServicesSection();
             section.innerHTML = servicesContent;
+            servicesSwiper();
+            document.addEventListener("click", handleAccordionClick);
           } else {
             console.error("Services data not found or in wrong format.");
+          }
+          break;
+
+        case "talk_to_our_specialist":
+          if (WPData && Array.isArray(WPData.talk_to_our_specialist)) {
+            const talkContent = createTalkSection(
+              WPData.talk_to_our_specialist[0]
+            );
+            console.log("Talk Section Content:", talkContent);
+            section.innerHTML = talkContent;
+          } else {
+            console.error("Talk data not found or in wrong format.");
+          }
+          break;
+
+        case "case_study_and_insights":
+          if (WPData && Array.isArray(WPData.case_study_and_insights)) {
+            const caseStudyContent = await createCaseStudySection();
+            section.innerHTML = caseStudyContent;
+            casestudySwiper();
+          } else {
+            console.error("Services data not found or in wrong format.");
+          }
+          break;
+
+        case "were_looking_for_talent":
+          if (WPData && Array.isArray(WPData.were_looking_for_talent)) {
+            const talentContent = createTalentSection(
+              WPData.were_looking_for_talent[0]
+            );
+            console.log("Talent Section Content:", talentContent);
+            section.innerHTML = talentContent;
+          } else {
+            console.error("Talk data not found or in wrong format.");
           }
           break;
 

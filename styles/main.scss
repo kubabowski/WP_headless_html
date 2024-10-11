@@ -1,5 +1,4 @@
 $blue: #334eb9;
-
 :root {
   --navbar-height: 120px;
 }
@@ -124,16 +123,66 @@ header {
     width: 100%;
   }
 
-  .hero-pagination {
+  #hero-pagination {
     width: 100%;
 
     .swiper-pagination-bullet {
-      width: unset;
-      height: unset;
+      width: 30px;
+      height: 30px;
     }
   }
 
   img {
     max-width: 90vw;
   }
+}
+
+// ==================================================================================================Trust. Quality Innovation
+.trust-section {
+  display: flex;
+
+  .col-1,
+  .col-2 {
+    width: 50%;
+  }
+}
+// ===================================================================================================================Services
+.services {
+  position: relative;
+
+  .slide-content {
+    display: flex;
+  }
+
+  #services-pagination {
+    position: relative;
+    bottom: unset;
+    top: unset;
+  }
+
+  .col-1,
+  .col-2 {
+    width: 50%;
+  }
+
+  .swiper-slide:not(.swiper-slide-visible),
+  .swiper-slide:not(.swiper-slide-active) {
+    opacity: 0 !important;
+  }
+}
+
+.accordion-toggle {
+  display: block;
+}
+
+.accordion-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  transition-delay: 0.2s;
+}
+
+.accordion-content.active {
+  display: block;
+  opacity: 1;
 }

@@ -95,11 +95,10 @@ header nav li:last-of-type {
   height: calc(100dvh - var(--navbar-height));
   position: relative;
 }
-.hero .text {
+.hero .description {
   position: absolute;
   top: 10%;
   left: 10%;
-  color: white;
 }
 .hero .header {
   margin-top: 0;
@@ -112,15 +111,57 @@ header nav li:last-of-type {
   height: 100%;
   width: 100%;
 }
-.hero .hero-pagination {
+.hero #hero-pagination {
   width: 100%;
 }
-.hero .hero-pagination .swiper-pagination-bullet {
-  width: unset;
-  height: unset;
+.hero #hero-pagination .swiper-pagination-bullet {
+  width: 30px;
+  height: 30px;
 }
 .hero img {
   max-width: 90vw;
 }
 
-/*# sourceMappingURL=main.css.map */
+.trust-section {
+  display: flex;
+}
+.trust-section .col-1,
+.trust-section .col-2 {
+  width: 50%;
+}
+
+.services {
+  position: relative;
+}
+.services .slide-content {
+  display: flex;
+}
+.services #services-pagination {
+  position: relative;
+  bottom: unset;
+  top: unset;
+}
+.services .col-1,
+.services .col-2 {
+  width: 50%;
+}
+.services .swiper-slide:not(.swiper-slide-visible),
+.services .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0 !important;
+}
+
+.accordion-toggle {
+  display: block;
+}
+
+.accordion-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  transition-delay: 0.2s;
+}
+
+.accordion-content.active {
+  display: block;
+  opacity: 1;
+}/*# sourceMappingURL=main.css.map */

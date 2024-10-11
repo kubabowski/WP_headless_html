@@ -32,7 +32,7 @@ export function createHeroSection(dataArray) {
             .join("")}
         </div>
       </div>
-      <div class="swiper-pagination hero-pagination"></div>
+      <div id="hero-pagination" class="swiper-pagination"></div>
     </div>
   `;
 
@@ -46,7 +46,7 @@ export function createHeroSection(dataArray) {
 export function heroSwiper() {
   new Swiper("#hero-swiper", {
     pagination: {
-      el: ".hero-pagination",
+      el: "#hero-pagination",
       clickable: true,
       renderBullet: function (index, className) {
         // Access the title based on the index
