@@ -15,13 +15,17 @@ export function createTalkSection(talkData) {
   const talkContent = `
       <div class="container">
         <div class="talk-section">
-          <h3>${header_1}</h3>
-          <h3>${header_2}</h3>
-          <p>${text}</p>
-           <img width=500 height=500 src="${image.url}">
-          <a class="btn btn-blue" href="${button.url}" target="${button.target}">
-            ${button.title}
-          </a>
+        <img src="${image.url}">
+          <div class="text-container">
+            <div class="text">
+              <h4 class="h4">${header_1}</h4>
+              <h3>${header_2}</h3>
+              <p>${text}</p>
+              <a class="btn btn-blue" href="${button.url}" target="${button.target}">
+                ${button.title}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     `;

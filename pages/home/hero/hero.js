@@ -5,7 +5,6 @@ export function createHeroSection(dataArray) {
     return "";
   }
 
-  // Store titles in a separate array for easy access in heroSwiper
   const titles = dataArray.map((slide) => slide.title || "");
 
   const heroContent = `
@@ -20,11 +19,15 @@ export function createHeroSection(dataArray) {
                   slide.image ? slide.image.url : ""
                 }')">
                   <div class="text">
-                    <h2 class="header">${slide.header || ""}</h2>
-                    <div class="description">${slide.desc || ""}</div>
-                    <a href="${slide.button.url}" class="description">${
+                    <div class="container">
+                      <h2 class="header h2">${slide.header || ""}</h2>
+                      <div class="description">${slide.desc || ""}</div>
+                        <a href="${
+                          slide.button.url
+                        }" class="btn btn-blue btn-lg">${
                 slide.button.title || ""
               }</a>
+                    </div>
                   </div>
                 </div>
               </div>`;
@@ -32,28 +35,66 @@ export function createHeroSection(dataArray) {
             .join("")}
         </div>
       </div>
+      
       <div id="hero-pagination" class="swiper-pagination"></div>
     </div>
   `;
 
-  // Store titles globally for use in heroSwiper
-  window.heroTitles = titles; // Or store in a closure if you prefer
+  window.heroTitles = titles;
 
   return heroContent;
 }
 
-// Function to initialize the Swiper
 export function heroSwiper() {
-  new Swiper("#hero-swiper", {
+  const heroSwiper = new Swiper("#hero-swiper", {
     pagination: {
       el: "#hero-pagination",
       clickable: true,
       renderBullet: function (index, className) {
-        // Access the title based on the index
-        const title = window.heroTitles[index] || ""; // Use global title array
-        return `<span class="${className}">${title}</span>`;
+        const title = window.heroTitles[index] || "";
+
+        const bullet = `<span class="${className}">${title}</span>`;
+
+        if (index === window.heroTitles.length - 1) {
+          return bullet + `<div id="swiper-control"></div>`;
+        }
+
+        return bullet;
       },
+    },
+    autoplay: {
+      delay: 4300,
+      disableOnInteraction: false,
     },
     effect: "fade",
   });
+
+  let isAutoplaying = true;
+
+  function reset_animation() {
+    var el = document.querySelector(".swiper-pagination-bullet");
+    el.style.animation = "none";
+    el.offsetHeight;
+    el.style.animation = null;
+  }
+
+  setTimeout(() => {
+    const swiperControl = document.querySelector("#swiper-control");
+    const pagination = document.querySelector("#hero-pagination");
+    const bullet = document.querySelector(".swiper-pagination-bullet");
+
+    if (swiperControl) {
+      swiperControl.addEventListener("click", function () {
+        if (isAutoplaying) {
+          heroSwiper.autoplay.pause();
+          pagination.classList.add("paused");
+        } else {
+          heroSwiper.autoplay.start();
+          pagination.classList.remove("paused");
+          reset_animation();
+        }
+        isAutoplaying = !isAutoplaying;
+      });
+    }
+  }, 100);
 }

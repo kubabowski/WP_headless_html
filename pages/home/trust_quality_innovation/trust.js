@@ -21,16 +21,16 @@ export function createTrustSection(trustData) {
   <div class="container">
     <div class="trust-section">
       <div class="col-1">
-        <h3>${header_1}</h3>
+        <h3 class="h3">${header_1}</h3>
         <div class="line"></div>
-        <p>${text_1}</p>
-        <p>${text_2}</p>
-        <p>${text_3}</p>
+        <p class="h6">${text_1}</p>
+        <p class="h6">${text_2}</p>
+        <p class="h1">${text_3}</p>
       </div>
       <div class="col-2">
-        <h3>${header_2}</h3>
-        <p>${text_4}</p>
-        <a class="btn btn-blue" href="${url}" target="${target}">
+        <h3 class="h3">${header_2}</h3>
+        <p class="h5">${text_4}</p>
+        <a class="btn btn-blue btn-lg" href="${url}" target="${target}">
           ${title}
         </a>
       </div>

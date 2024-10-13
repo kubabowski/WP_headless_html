@@ -1,0 +1,41 @@
+@media only screen and (max-width: 1500px) {
+  /* ======================================================GENERAL */
+  :root {
+    --color-blue: #334eb9;
+
+    --navbar-height: 120px;
+
+    --container-padding: 6.6vw;
+
+    --btn-padding: 8px 16px;
+    --btn-font-size: 14px;
+    --btn-lg-font-size: 16px;
+    --btn-line-height: 24px;
+    --btn-lg-line-height: 22px;
+  }
+
+  /* ======================================================HEADER */
+
+  :root {
+    --header-li-margin: 32px;
+    --header-a-font-size: 16px;
+    --header-a-line-height: 24px;
+    --header-a-dropdown-padding: 24px;
+    --header-a-dropdown-caret: 8px;
+  }
+
+  /* ======================================================HERO */
+
+  :root {
+    --hero-text-top-vh: 25vh;
+    --hero-text-top-dvh: 25dvh;
+    --hero-header-font-size: 56px;
+    --hero-header-line-height: 64px;
+    --hero-header-mb: 24px;
+    --hero-header-pr: 50%;
+    --hero-desc-font-size: 18px;
+    --hero-desc-line-height: 30px;
+    --hero-desc-pr: 55%;
+    --hero-btn-mb: 24px;
+  }
+}

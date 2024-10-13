@@ -1,6 +1,6 @@
 export function createTalentSection(talentData) {
   if (!talentData || typeof talentData !== "object") {
-    console.error("Invalid or empty talk data");
+    console.error("Invalid or empty talent data");
     return "";
   }
 
@@ -14,14 +14,19 @@ export function createTalentSection(talentData) {
 
   const talentContent = `
         <div class="container">
-          <div class="talk-section">
-            <h3>${header_1}</h3>
-            <h3>${header_2}</h3>
-            <p>${text}</p>
-             <img width=500 height=500 src="${image.url}">
-            <a class="btn btn-blue" href="${button.url}" target="${button.target}">
-              ${button.title}
-            </a>
+          <div class="talent-section">
+            <div class="col-1">
+              <img width=500 height=500 src="${image.url}">
+            </div>
+            <div class="col-2">
+              <h3>${header_1}</h3>
+              <h3>${header_2}</h3>
+              <p>${text}</p>
+              
+              <a class="btn btn-blue" href="${button.url}" target="${button.target}">
+                ${button.title}
+              </a>
+            </div>
           </div>
         </div>
       `;

@@ -94,7 +94,9 @@ function hideLoadingIndicator() {
 
         case "services":
           if (WPData && Array.isArray(WPData.services)) {
-            const servicesContent = await createServicesSection();
+            const servicesContent = await createServicesSection(
+              WPData.services[0]
+            );
             section.innerHTML = servicesContent;
             servicesSwiper();
             document.addEventListener("click", handleAccordionClick);

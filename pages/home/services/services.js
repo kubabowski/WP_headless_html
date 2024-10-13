@@ -6,7 +6,7 @@ async function fetchServicesCategoriesData() {
     const data = await response.json();
 
     if (data.length > 0) {
-      return data; // Return categories data
+      return data;
     } else {
       console.error("No categories found.");
       return null;
@@ -25,7 +25,7 @@ async function fetchServicesData() {
     const data = await response.json();
 
     if (data.length > 0) {
-      return data; // Return services data
+      return data;
     } else {
       console.error("No service items found.");
       return null;
@@ -36,7 +36,14 @@ async function fetchServicesData() {
   }
 }
 
-export async function createServicesSection() {
+export async function createServicesSection(servicesContentData) {
+  if (!servicesContentData || typeof servicesContentData !== "object") {
+    console.error("Invalid or empty servicesContentData data");
+    return "";
+  }
+
+  const { title = "", header = "" } = servicesContentData;
+
   const servicesCategoriesData = await fetchServicesCategoriesData();
   const servicesData = await fetchServicesData();
 
@@ -49,8 +56,14 @@ export async function createServicesSection() {
   const servicesContent = `
   <div class="services" style="margin-top:100px; margin-bottom:100px;">
     <div class="container">
+      <h3 class="h5">${title}</h3>
+      <h3 class="h3">${header}</h3>
       <div id="services-swiper" class="swiper mySwiper">
+      
         <div id="services-pagination" class="swiper-pagination"></div>
+        <div id="services-next" class="swiper-button-next"></div>
+        <div id="services-prev" class="swiper-button-prev"></div>
+
         <div class="swiper-wrapper">
           ${servicesCategoriesData
             .map((category) => {
@@ -61,7 +74,7 @@ export async function createServicesSection() {
               );
 
               return `
-              <div class="swiper-slide" style="background-color: purple;">
+              <div class="swiper-slide" >
                   <div class="slide-content">
                     <div class="col-1">
                       <h3 style="color:white;">${category.name}</h3>
@@ -117,6 +130,10 @@ export function servicesSwiper() {
         const title = window.serviceTitles[index] || "";
         return `<span class="${className}">${title}</span>`;
       },
+    },
+    navigation: {
+      nextEl: "#services-next",
+      prevEl: "#services-prev",
     },
   });
 }

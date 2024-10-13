@@ -1,0 +1,71 @@
+:root {
+  /* ======================================================GENERAL */
+  --color-blue: #334eb9;
+
+  --navbar-height: 120px;
+
+  --container-padding: 6.6vw;
+
+  --section-margin: 96px;
+
+  --h1-font-size: 96px;
+  --h1-line-height: 96px;
+
+  --h2-font-size: 56px;
+  --h2-line-height: 64px;
+
+  --h3-font-size: 36px;
+  --h3-line-height: 44px;
+
+  --h4-font-size: 24px;
+  --h4-line-height: 32px;
+
+  --h5-font-size: 20px;
+  --h5-line-height: 32px;
+
+  --h6-font-size: 16px;
+  --h6-line-height: 24px;
+
+  --h7-font-size: 14px;
+  --h7-line-height: 14px;
+
+  --btn-padding: 8px 16px;
+  --btn-font-size: 14px;
+  --btn-lg-font-size: 16px;
+  --btn-line-height: 24px;
+  --btn-lg-line-height: 22px;
+
+  /* ======================================================HEADER */
+
+  --header-li-margin: 32px;
+  --header-a-font-size: 16px;
+  --header-a-line-height: 24px;
+  --header-a-dropdown-padding: 24px;
+  --header-a-dropdown-caret: 8px;
+
+  /* ======================================================HERO */
+
+  --hero-text-top-vh: 29vh;
+  --hero-text-top-dvh: 29dvh;
+  --hero-header-mb: 24px;
+  --hero-header-pr: 50%;
+  --hero-desc-font-size: 18px;
+  --hero-desc-line-height: 30px;
+  --hero-desc-pr: 55%;
+  --hero-btn-mb: 24px;
+  --hero-bullet-mr: 40px;
+
+  /* ======================================================TRYST QUALITY INNOVATION */
+
+  --trust-bg-color: #f4f6fa;
+  --trust-header-font-size: 29vh;
+  --trust-col1-pr: 3%;
+  --trust-col2-pr: 10%;
+  --trust-col1-h3-mb: 32px;
+  --trust-line-margin: 32px 0 19px;
+  --trust-col2-h5-margin: 12px 0 24px;
+
+  /* ======================================================Talk to our specialist */
+
+  --talk-text-pad: 32px;
+}

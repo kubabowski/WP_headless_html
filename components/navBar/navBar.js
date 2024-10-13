@@ -3,7 +3,7 @@ async function fetchHeaderData() {
   try {
     const logo = "Dummy Logo"; // Replace with an actual logo if you have one
     const response = await fetch(
-      "http://localhost/jcc_solutions/wordpress/wp-json/wp/v2/pages?_fields=slug,title,menu_order&orderby=menu_order&order=asc"
+      "http://localhost/jcc_solutions/wordpress/wp-json/wp/v2/pages?_fields=slug,title,menu_order,template&orderby=menu_order&order=asc"
     );
 
     if (!response.ok) {
@@ -51,9 +51,16 @@ function setHeaderData(logo, menuItems, headerElement) {
       <nav>
         <ul>
           ${menuItems
+
             .map(
               (item) =>
-                `<li class="fw-500"><a href="${item.slug}">${item.title.rendered}</a></li>`
+                `<li class="${
+                  item.template == "page-with-sidebar" ? "dropdown" : ""
+                }">
+                    <a href="${item.slug}">
+                      ${item.title.rendered}
+                    </a>
+                  </li>`
             )
             .join("")}
         </ul>
