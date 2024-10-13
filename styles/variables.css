@@ -8,26 +8,26 @@
 
   --section-margin: 96px;
 
-  --h1-font-size: 96px;
-  --h1-line-height: 96px;
+  --display1-font-size: 96px;
+  --display1-line-height: 96px;
 
-  --h2-font-size: 56px;
-  --h2-line-height: 64px;
+  --h1-font-size: 56px;
+  --h1-line-height: 64px;
 
-  --h3-font-size: 36px;
-  --h3-line-height: 44px;
+  --h2-font-size: 36px;
+  --h2-line-height: 44px;
 
-  --h4-font-size: 24px;
+  --h3-font-size: 24px;
+  --h3-line-height: 32px;
+
+  --h4-font-size: 20px;
   --h4-line-height: 32px;
 
-  --h5-font-size: 20px;
-  --h5-line-height: 32px;
+  --h5-font-size: 16px;
+  --h5-line-height: 24px;
 
-  --h6-font-size: 16px;
-  --h6-line-height: 24px;
-
-  --h7-font-size: 14px;
-  --h7-line-height: 14px;
+  --h6-font-size: 14px;
+  --h6-line-height: 14px;
 
   --btn-padding: 8px 16px;
   --btn-font-size: 14px;
@@ -68,4 +68,17 @@
   /* ======================================================Talk to our specialist */
 
   --talk-text-pad: 32px;
+
+  /* ======================================================SERVICES */
+
+  --services-header-pr: 45%;
+  --services-header-margin: 12px 0 48px;
+  --services-slide-col-padding: 7.4vw;
+
+  --services-cat-tab-font-size: 14px;
+  --services-cat-tab-line-height: 20px;
+  --services-cat-tab-font-weight: 500;
+  --services-cat-tab-padding: 16px 20px;
+
+  --services-accordion-padding: 28px 48px;
 }

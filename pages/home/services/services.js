@@ -57,13 +57,32 @@ export async function createServicesSection(servicesContentData) {
   <div class="services" style="margin-top:100px; margin-bottom:100px;">
     <div class="container">
       <h3 class="h5">${title}</h3>
-      <h3 class="h3">${header}</h3>
-      <div id="services-swiper" class="swiper mySwiper">
-      
-        <div id="services-pagination" class="swiper-pagination"></div>
-        <div id="services-next" class="swiper-button-next"></div>
-        <div id="services-prev" class="swiper-button-prev"></div>
+      <h3 class="h2 header">${header}</h3>
 
+      <div class="nav-row"> 
+          <div class="col-1">
+            <div thumbsSlider="" id="services-swiper-thumbs" class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              ${servicesCategoriesData
+                .map((category) => {
+                  return `
+                  <div class="swiper-slide cat-tab" >
+                      <h4 class="cat-name" >${category.name}</h4>
+                  </div>`;
+                })
+                .join("")}
+            </div>
+          </div>
+          </div>
+
+          <div class="col-2 flex">
+            <div id="services-prev" class="swiper-button-prev"></div>
+            <div id="services-next" class="swiper-button-next"></div>
+          </div>
+      </div>
+
+
+      <div id="services-swiper" class="swiper mySwiper">
         <div class="swiper-wrapper">
           ${servicesCategoriesData
             .map((category) => {
@@ -77,21 +96,26 @@ export async function createServicesSection(servicesContentData) {
               <div class="swiper-slide" >
                   <div class="slide-content">
                     <div class="col-1">
-                      <h3 style="color:white;">${category.name}</h3>
 
-                      ${filteredServices
-                        .map((service) => {
-                          return `
-                            <h3 class="accordion-toggle" data-target="#accordion-service-${service.id}">
-                              ${service.acf.service_title}
-                            </h3>
-                          
-                          <div class="accordion-content" id="accordion-service-${service.id}">
-                            <p>${service.acf.service_desc}</p>
+                      <div id="accordion-services-${
+                        category.id
+                      }" class="accordion-container accordion-services">
+                        ${filteredServices
+                          .map((service) => {
+                            return `
+
+                          <div class="ac">
+                            <h2 class="ac-header">
+                              <button type="button" class="ac-trigger">${service.acf.service_title}</button>
+                            </h2>
+                            <div class="ac-panel">
+                              <p class="ac-text">${service.acf.service_desc}</p>
+                            </div>
                           </div>
-                          `;
-                        })
-                        .join("")}
+                            `;
+                          })
+                          .join("")}
+                        </div>
                     </div>
                     <div class="col-2">
                       <img width=500 height=500 src="${
@@ -104,7 +128,6 @@ export async function createServicesSection(servicesContentData) {
             .join("")}
         </div>
       </div>
-            
     </div>
   </div>
 `;
@@ -115,9 +138,17 @@ export async function createServicesSection(servicesContentData) {
 }
 
 export function servicesSwiper() {
-  new Swiper("#services-swiper", {
+  var thumbsSwiper = new Swiper("#services-swiper-thumbs", {
+    loop: true,
+    spaceBetween: 2,
+    slidesPerView: 3,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+
+  var mainSwiper = new Swiper("#services-swiper", {
+    loop: true,
     effect: "fade",
-    spaceBetween: 30,
     centeredSlides: true,
     // autoplay: {
     //   delay: 2500,
@@ -126,14 +157,21 @@ export function servicesSwiper() {
     pagination: {
       el: "#services-pagination",
       clickable: true,
-      renderBullet: function (index, className) {
-        const title = window.serviceTitles[index] || "";
-        return `<span class="${className}">${title}</span>`;
-      },
     },
     navigation: {
       nextEl: "#services-next",
       prevEl: "#services-prev",
     },
+
+    thumbs: {
+      swiper: thumbsSwiper,
+    },
   });
+
+  document
+    .querySelectorAll(".accordion-services")
+    .forEach((accordionElement) => {
+      new Accordion(`#${accordionElement.id}`);
+      console.log("accordionElement ", accordionElement.id, " initialized");
+    });
 }

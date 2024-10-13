@@ -2,7 +2,7 @@ import "../../components/navBar/navBar.js";
 import { createHeroSection, heroSwiper } from "./hero/hero.js";
 import { createTrustSection } from "./trust_quality_innovation/trust.js";
 import { createServicesSection, servicesSwiper } from "./services/services.js";
-import { handleAccordionClick } from "../../components/accordion.js";
+// import { handleAccordionClick } from "../../components/accordion.js";
 import { createTalkSection } from "./talk_to_our_specialist/talk_to_our_specialist.js";
 import { createTalentSection } from "./were_looking_for_talent/were_looking_for_talent.js";
 import {
@@ -10,6 +10,7 @@ import {
   createCaseStudySection,
 } from "./case_study_and_insights/case_study_and_insights.js";
 import { createProductsSection } from "./products/products.js";
+import "../../components/accordion.js";
 
 async function fetchPagesData() {
   try {
@@ -37,7 +38,7 @@ function showLoadingIndicator(sections) {
     if (element) {
       element.innerHTML = `
         <div class="loading">
-          <p>Loading...</p>
+          <img width="150" alt"loading" src="../../../assets/icons/loading.gif">
         </div>
       `;
     } else {
@@ -99,7 +100,7 @@ function hideLoadingIndicator() {
             );
             section.innerHTML = servicesContent;
             servicesSwiper();
-            document.addEventListener("click", handleAccordionClick);
+            // document.addEventListener("click", handleAccordionClick);
           } else {
             console.error("Services data not found or in wrong format.");
           }
@@ -161,3 +162,20 @@ function hideLoadingIndicator() {
     hideLoadingIndicator();
   }
 })();
+
+if ("serviceWorker" in navigator) {
+  // Register the service worker on page load
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("http://localhost/jcc_solutions/frontend/service-worker.js") // Specify the path to your service worker file
+      .then(function (registration) {
+        console.log(
+          "Service Worker registered with scope:",
+          registration.scope
+        );
+      })
+      .catch(function (error) {
+        console.log("Service Worker registration failed:", error);
+      });
+  });
+}

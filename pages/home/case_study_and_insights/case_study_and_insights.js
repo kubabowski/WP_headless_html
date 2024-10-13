@@ -59,11 +59,18 @@ export async function createCaseStudySection() {
                     <div class="swiper-wrapper">
                     ${caseStudyData
                       .map((caseStudy) => {
+                        const {
+                          title,
+                          desc,
+                          date,
+                          image: { url },
+                        } = caseStudy.acf;
                         return `
                         <div class="swiper-slide" style="background-color: purple;">
                             <div class="slide-content">
-                            <h3 style="color: white;">${caseStudy.acf.title}</h3>
-                            <p style="color: white;">${caseStudy.acf.desc}</p>
+                            <h3 style="color: white;">${title}</h3>
+                            <p style="color: white;">${desc}</p>
+                            <p style="color: white;">${date}</p>
                             </div>
                         </div>`;
                       })
@@ -75,15 +82,17 @@ export async function createCaseStudySection() {
             ${insights
               .map((insight) => {
                 return `
-                <div class="swiper-slide" style="background-color: purple;">
-                    <div class="slide-content">
-                    <h3 style="color: white;">${insight.acf.title}</h3>
-                    </div>
+                <div class="" >
+                    <h3>${insight.acf.title}</h3>
+                    
                 </div>`;
               })
               .join("")}
             </div>
         </div>
+
+        <div id="study-prev" class="swiper-button-prev"></div>
+        <div id="study-next" class="swiper-button-next"></div>
     </div>
 
     `;
@@ -96,14 +105,16 @@ export async function createCaseStudySection() {
 
 export function casestudySwiper() {
   new Swiper("#casestudy-swiper", {
-    effect: "fade",
-    spaceBetween: 30,
-    centeredSlides: true,
+    // effect: "fade",
     slidesPerView: 2,
-    slidesPerGroup: 2,
+    spaceBetween: 30,
     // autoplay: {
     //   delay: 2500,
     //   disableOnInteraction: false,
     // },
+    navigation: {
+      nextEl: "#study-next",
+      prevEl: "#study-prev",
+    },
   });
 }

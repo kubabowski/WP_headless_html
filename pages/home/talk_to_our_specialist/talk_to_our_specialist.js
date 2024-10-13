@@ -18,7 +18,7 @@ export function createTalkSection(talkData) {
         <img src="${image.url}">
           <div class="text-container">
             <div class="text">
-              <h4 class="h4">${header_1}</h4>
+              <h4 class="h3">${header_1}</h4>
               <h3>${header_2}</h3>
               <p>${text}</p>
               <a class="btn btn-blue" href="${button.url}" target="${button.target}">

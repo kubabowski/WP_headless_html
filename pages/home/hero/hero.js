@@ -20,7 +20,7 @@ export function createHeroSection(dataArray) {
                 }')">
                   <div class="text">
                     <div class="container">
-                      <h2 class="header h2">${slide.header || ""}</h2>
+                      <h2 class="header h1">${slide.header || ""}</h2>
                       <div class="description">${slide.desc || ""}</div>
                         <a href="${
                           slide.button.url
