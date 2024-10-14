@@ -66,6 +66,7 @@ export function heroSwiper() {
       disableOnInteraction: false,
     },
     effect: "fade",
+    loop: true,
   });
 
   let isAutoplaying = true;
@@ -89,6 +90,7 @@ export function heroSwiper() {
           pagination.classList.add("paused");
         } else {
           heroSwiper.autoplay.start();
+          heroSwiper.slideNext();
           pagination.classList.remove("paused");
           reset_animation();
         }

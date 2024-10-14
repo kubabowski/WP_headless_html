@@ -1,4 +1,5 @@
 import "../../components/navBar/navBar.js";
+import "../../components/footer/footer.js";
 import { createHeroSection, heroSwiper } from "./hero/hero.js";
 import { createTrustSection } from "./trust_quality_innovation/trust.js";
 import { createServicesSection, servicesSwiper } from "./services/services.js";

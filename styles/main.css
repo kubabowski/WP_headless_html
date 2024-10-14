@@ -343,14 +343,14 @@ header nav li:nth-of-type(2) {
   display: flex;
   flex-direction: column;
   padding-right: 56px;
-  border-bottom: rgba(250, 250, 250, 0.5) solid 1px;
-  border-right: rgba(250, 250, 250, 0.5) solid 1px;
+  border-bottom: rgba(250, 250, 250, 0.2) solid 1px;
+  border-right: rgba(250, 250, 250, 0.2) solid 1px;
 }
 #footer .inner.bottom .col-2 {
   padding-bottom: 80px;
   padding-top: 80px;
   width: 70%;
-  border-bottom: rgba(250, 250, 250, 0.5) solid 1px;
+  border-bottom: rgba(250, 250, 250, 0.2) solid 1px;
 }
 #footer .inner.bottom p {
   font-size: var(--services-cat-tab-font-size);

@@ -1,4 +1,4 @@
-async function fetchServicesCategoriesData() {
+export async function fetchServicesCategoriesData() {
   try {
     const response = await fetch(
       "http://localhost/jcc_solutions/wordpress/wp-json/wp/v2/service-category?_fields=link,name,id,slug,acf&acf_format=standard"
@@ -133,6 +133,23 @@ export async function createServicesSection(servicesContentData) {
 `;
 
   window.serviceTitles = titles;
+
+  const servicesFooter = `
+  ${servicesCategoriesData
+    .map((category) => {
+      return `
+          <ul>
+              <li>
+                <a href="${category.link}">
+                  ${category.name}
+                </a>
+              </li>
+          </ul>`;
+    })
+    .join("")}`;
+
+  const footerServices = document.getElementById("footer-services");
+  footerServices.innerHTML = servicesFooter;
 
   return servicesContent;
 }
