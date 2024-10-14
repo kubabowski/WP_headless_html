@@ -1,7 +1,7 @@
 async function fetchCaseStudyData() {
   try {
     const response = await fetch(
-      "http://localhost/jcc_solutions/wordpress/wp-json/wp/v2/case-study?acf_format=standard&_fields=acf"
+      "http://localhost/jcc_solutions/wordpress/wp-json/wp/v2/case-study?acf_format=standard&_fields=acf, link"
     );
     const data = await response.json();
 
@@ -40,7 +40,12 @@ async function fetchInsightsByIds(ids) {
   }
 }
 
-export async function createCaseStudySection() {
+export async function createCaseStudySection(caseStudyContentData) {
+  if (!caseStudyContentData || typeof caseStudyContentData !== "object") {
+    console.error("Invalid or empty caseStudyData");
+    return "";
+  }
+
   const caseStudyData = await fetchCaseStudyData();
 
   if (!caseStudyData) {
@@ -51,26 +56,32 @@ export async function createCaseStudySection() {
   const insights = await fetchInsightsByIds(insightIds);
 
   const caseStudyContent = `
-      <div class="casestudy" style="margin-top: 100px; margin-bottom: 100px;">
+      <div class="casestudy">
         <div class="container">
+        <h2 class="h2">${caseStudyContentData.title}</h2>
+          <div class="inner">
             <div class="col-1">
                 <div id="casestudy-swiper" class="swiper mySwiper">
                     <div id="casestudy-pagination" class="swiper-pagination"></div>
                     <div class="swiper-wrapper">
                     ${caseStudyData
                       .map((caseStudy) => {
-                        const {
-                          title,
-                          desc,
-                          date,
-                          image: { url },
-                        } = caseStudy.acf;
+                        const { title, desc, date, image } = caseStudy.acf;
+                        const imageUrl = image ? image.url : "";
                         return `
-                        <div class="swiper-slide" style="background-color: purple;">
+                        <div class="swiper-slide"">
                             <div class="slide-content">
-                            <h3 style="color: white;">${title}</h3>
-                            <p style="color: white;">${desc}</p>
-                            <p style="color: white;">${date}</p>
+                              <div class="case-image" style="background-image: url('${imageUrl}')"></div>
+                              <div class="case-card">
+                                  <div class="case-badge">CASE STUDY</div>
+                                  <h3 class="case-title">${title}</h3>
+                                  <h4 class="h5 case-desc">${desc}</h4>
+                                  <div class"case-info">
+                                    <p class="case-date">${date} -</p>
+                                    <p class="case-read">9 MIN READ</p>
+                                  </div>
+                                  <a class="link" href="${caseStudy.link}">Read more</a>
+                                </div>
                             </div>
                         </div>`;
                       })
@@ -78,26 +89,44 @@ export async function createCaseStudySection() {
                     </div>
                 </div>
             </div>
-            <div class="col-2">
+            <div class="col-2 insight-col">
             ${insights
               .map((insight) => {
+                const { title, desc, date, link } = insight.acf;
                 return `
-                <div class="" >
-                    <h3>${insight.acf.title}</h3>
-                    
+                <div class="insight-card">
+                    <div class="case-badge">INSIGHTS</div>
+                    <h3 class="case-title">${title}</h3>
+                    <h4 class="h5 case-desc">${desc}</h4>
+                    <div class"case-info">
+                      <p class="case-date">${date} -</p>
+                      <p class="case-read">9 MIN READ</p>
+                    </div>
+                    <a class="link" href="${insight.link}">Read more</a>
                 </div>`;
               })
               .join("")}
             </div>
+          </div>
+          <div class="inner">
+            <div class="col-1 nav-col">
+              <div class="swiper-nav">
+                <div id="study-prev" class="swiper-button-prev"></div>
+                <div id="study-next" class="swiper-button-next"></div>
+              </div>
+              <a href="#" class="link">Read more</a>
+            </div>
+            <div class="col-2 nav-col">
+              <a href="#" class="link">Read more</a>
+            </div>
+          </div>
         </div>
 
-        <div id="study-prev" class="swiper-button-prev"></div>
-        <div id="study-next" class="swiper-button-next"></div>
+        
     </div>
 
     `;
 
-  // Initialize the Swiper after the HTML is set
   casestudySwiper();
 
   return caseStudyContent;

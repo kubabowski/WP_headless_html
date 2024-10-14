@@ -9,7 +9,7 @@ import {
   casestudySwiper,
   createCaseStudySection,
 } from "./case_study_and_insights/case_study_and_insights.js";
-import { createProductsSection } from "./products/products.js";
+import { createProductsSection, productsSwiper } from "./products/products.js";
 import "../../components/accordion.js";
 
 async function fetchPagesData() {
@@ -119,7 +119,9 @@ function hideLoadingIndicator() {
 
         case "case_study_and_insights":
           if (WPData && Array.isArray(WPData.case_study_and_insights)) {
-            const caseStudyContent = await createCaseStudySection();
+            const caseStudyContent = await createCaseStudySection(
+              WPData.case_study_and_insights[0]
+            );
             section.innerHTML = caseStudyContent;
             casestudySwiper();
           } else {
@@ -129,8 +131,12 @@ function hideLoadingIndicator() {
 
         case "products":
           try {
-            const productsContent = await createProductsSection();
+            const productsContent = await createProductsSection(
+              WPData.products[0]
+            );
             section.innerHTML = productsContent;
+
+            productsSwiper();
           } catch (error) {
             console.error("Error loading products section:", error);
             section.innerHTML = `<p>Error loading products section.</p>`;
@@ -162,20 +168,3 @@ function hideLoadingIndicator() {
     hideLoadingIndicator();
   }
 })();
-
-if ("serviceWorker" in navigator) {
-  // Register the service worker on page load
-  window.addEventListener("load", function () {
-    navigator.serviceWorker
-      .register("http://localhost/jcc_solutions/frontend/service-worker.js") // Specify the path to your service worker file
-      .then(function (registration) {
-        console.log(
-          "Service Worker registered with scope:",
-          registration.scope
-        );
-      })
-      .catch(function (error) {
-        console.log("Service Worker registration failed:", error);
-      });
-  });
-}

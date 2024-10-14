@@ -9,23 +9,26 @@ export function createTalentSection(talentData) {
     header_2 = "",
     text = "",
     button = { url: "", target: "", title: "" },
-    image = { url: "" },
+    image,
   } = talentData;
+  const imageUrl = image ? image.url : "";
 
   const talentContent = `
         <div class="container">
           <div class="talent-section">
-            <div class="col-1">
-              <img width=500 height=500 src="${image.url}">
+            <div class="col-1" >
+              <div class="talent-img" style="background-image: url('${imageUrl}')"></div>
             </div>
             <div class="col-2">
-              <h3>${header_1}</h3>
-              <h3>${header_2}</h3>
-              <p>${text}</p>
-              
-              <a class="btn btn-blue" href="${button.url}" target="${button.target}">
-                ${button.title}
-              </a>
+              <div class="talent-text">
+                <h3 class="h4">${header_1}</h3>
+                <h4 class="h2">${header_2}</h4>
+                <p class="h5">${text}</p>
+                
+                <a class="btn btn-blue" href="${button.url}" target="${button.target}">
+                  ${button.title}
+                </a>
+              </div>
             </div>
           </div>
         </div>

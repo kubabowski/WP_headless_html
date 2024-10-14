@@ -35,6 +35,9 @@
   --btn-line-height: 24px;
   --btn-lg-line-height: 22px;
 
+  --link-font-size: 16px;
+  --link-line-height: 24px;
+
   /* ======================================================HEADER */
 
   --header-li-margin: 32px;
@@ -81,4 +84,23 @@
   --services-cat-tab-padding: 16px 20px;
 
   --services-accordion-padding: 28px 48px;
+
+  /* ======================================================SERVICES */
+
+  --casestudy-header-margin: 48px;
+  --casestudy-img-width: 236px;
+
+  --casestudy-card-padding: 32px;
+  --casestudy-title-font-size: 20px;
+  --casestudy-title-line-height: 28px;
+  --casestudy-card-inner-margin: 16px;
+
+  --casestudy-card-height: 420px;
+
+  --casestudy-sm-font-size: 14px;
+  --casestudy-sm-line-height: 20px;
+
+  /* ======================================================SERVICES */
+
+  --footer-newsletter-padding: 48px;
 }

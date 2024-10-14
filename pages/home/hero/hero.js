@@ -1,4 +1,3 @@
-// Function to create the hero section
 export function createHeroSection(dataArray) {
   if (!Array.isArray(dataArray) || dataArray.length === 0) {
     console.error("Invalid or empty data array");
